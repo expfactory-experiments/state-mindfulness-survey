@@ -1,6 +1,7 @@
 {
     "name": "State Mindfulness Scale Survey",
     "template":"survey",
+    "url":"https://www.github.com/expfactory-experiments/state-mindfulness-survey",
     "exp_id": "state-mindfulness-survey",
     "contributors": [ "Paul Sharpe",
                       "Vanessa Sochat" ],
