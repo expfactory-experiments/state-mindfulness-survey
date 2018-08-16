@@ -1,13 +1,31 @@
 library(tidyverse)
 
-#' Calculate State Mindfulness Scale values
+#' Calculate State Mindfulness Scale (SMS) values
+#'
+#' Calculates SMS total score, and scores for mind and body subscales (Tanay & Bernstein, 2013).  Expects a data frame
+#' formatted by \code{\link[expfactoryr:process_expfactory_survey]{expfactoryr::process_expfactory_survey}}, containing
+#' responses from a single participant. Participant id \emph{must} be in column \code{p}.
+#'
+#' @examples
+#'
+#' sms_df <- expand.grid(token = participants$token, survey = 'state-mindfulness-survey-results.json') %>%
+#'   rowwise() %>%
+#'   do(., expfactoryr::process_expfactory_survey(.$token, paste('data/', .$token, '_finished/', .$survey, sep=''),
+#'     flat=TRUE)) %>%
+#'     rename(p = Token)
+#'  process_sms_data <- function(participant, df) {
+#'    return(efsmsr::state_mindfulness_scale(df %>% filter(p == participant)))
+#'  }
+#'  sms <- sms_df %>%
+#'    rowwise() %>%
+#'    do(., process_sms_data(.$p, sms_df)) %>%
+#'    arrange(p)
 #'
 #' @param df Data frame
 #' @keywords State Mindfulness Scale
 #' @export
 #' @return Data frame
 state_mindfulness_scale <- function(df) {
-  # calculate SMS score (Tanay & Bernstein, 2013)
   # The 21 items (none reversed) are based on the 2014 instrument supplied by Bernstein
   df <- mutate(df, value = as.integer(df$value))
   sms_total <- sum(df$value)  # SMS total
