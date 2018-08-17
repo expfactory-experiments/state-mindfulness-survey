@@ -22,8 +22,9 @@ jobs:
             - "/usr/local/lib/R/site-library"
       - run:
           command: |
+            cd /tmp/src/efsmsr
             R -e 'devtools::check()'
             R -e 'devtools::test()'
       - store_artifacts:
-          path: man/
+          path: /tmp/src/efsmsr/man/
           destination: man
