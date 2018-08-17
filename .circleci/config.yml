@@ -22,10 +22,10 @@ jobs:
             - "/usr/local/lib/R/site-library"
       - run:
           command: |
-            echo "Installing package efsmsr"
+            echo "Installing package expfactoryR"
             R -e "devtools::install_github('expfactory/expfactoryR')"
-            #R -e "devtools::install_local('efsmsr')"
             cd /tmp/src/efsmsr
+            echo "Running devtools checks and tests for sfsmsr"
             R -e 'devtools::check()'
             R -e 'devtools::test()'
       - store_artifacts:
