@@ -22,6 +22,9 @@ jobs:
             - "/usr/local/lib/R/site-library"
       - run:
           command: |
+            echo "Installing package efsmsr"
+            R -e "devtools::install_github('expfactory/expfactoryR')"
+            #R -e "devtools::install_local('efsmsr')"
             cd /tmp/src/efsmsr
             R -e 'devtools::check()'
             R -e 'devtools::test()'
