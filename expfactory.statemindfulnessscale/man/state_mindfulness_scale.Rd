@@ -14,24 +14,24 @@ Data frame
 }
 \description{
 Calculates SMS total score, and scores for mind and body subscales (Tanay & Bernstein, 2013).  Expects a data frame
-formatted by \code{\link[expfactoryr:process_expfactory_survey]{expfactoryr::process_expfactory_survey}}, containing
+formatted by \code{\link[expfactory:process_expfactory_survey]{expfactory::process_expfactory_survey}}, containing
 responses from a single participant. Participant id \emph{must} be in column \code{p}.
 }
 \examples{
-
+\dontrun{
 sms_df <- expand.grid(token = participants$token, survey = 'state-mindfulness-survey-results.json') \%>\%
   rowwise() \%>\%
-  do(., expfactoryr::process_expfactory_survey(.$token, paste('data/', .$token, '_finished/', .$survey, sep=''),
+  do(., expfactory::process_expfactory_survey(.$token, paste('data/', .$token, '_finished/', .$survey, sep=''),
     flat=TRUE)) \%>\%
     rename(p = Token)
  process_sms_data <- function(participant, df) {
-   return(efsmsr::state_mindfulness_scale(df \%>\% filter(p == participant)))
+   return(state_mindfulness_scale(df \%>\% filter(p == participant)))
  }
  sms <- sms_df \%>\%
    rowwise() \%>\%
    do(., process_sms_data(.$p, sms_df)) \%>\%
    arrange(p)
-
+}
 }
 \keyword{Mindfulness}
 \keyword{Scale}
