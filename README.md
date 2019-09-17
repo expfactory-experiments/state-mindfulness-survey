@@ -23,5 +23,5 @@ R -e 'devtools::test()'
 
 ```
 library(devtools)
-install_github('expfactory-experiments/state-mindfulness-survey/expfactory.statemindfulnessscale')
+install_github('earcanal/state-mindfulness-survey/expfactory.statemindfulnessscale')
 ```
