@@ -1,7 +1,7 @@
 library(tidyverse)
 context('State Mindfulness Survey')
 
-df <- expfactoryr::process_expfactory_survey(token='1', survey='../fixtures/sms-flat.json', flat=TRUE) %>%
+df <- expfactory::process_expfactory_survey(token='1', survey='../fixtures/sms-flat.json', flat=TRUE) %>%
   rename(p = Token)
 test_that("process_expfactory_survey() can process flat JSON", {
   expect_is(df, 'data.frame')
@@ -20,7 +20,7 @@ test_that('SMS body value', {
   expect_equal(sms[1,'sms_body'], 19)
 })
 
-df <- expfactoryr::process_expfactory_survey(token='1', survey='../fixtures/sms.json') %>%
+df <- expfactory::process_expfactory_survey(token='1', survey='../fixtures/sms.json') %>%
   mutate(p = 1)
 test_that("process_expfactory_survey() returns a data frame", {
    expect_is(df, 'data.frame')
